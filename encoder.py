@@ -1,5 +1,6 @@
 import base64
 import argparse
+import urllib.parse
 
 def encode_base64(s):
     return base64.b64encode(s.encode()).decode()
@@ -19,6 +20,13 @@ def main():
             print(decoded_string)
         else:
             encoded_string = encode_base64(args.string)
+            print(encoded_string)
+    elif args.f == 'url':
+        if args.d:
+            decoded_string = urllib.parse.unquote(args.string)
+            print(decoded_string)
+        else:
+            encoded_string = urllib.parse.quote(args.string)
             print(encoded_string)
     else:
         print(f"Unsupported format: {args.f}")
